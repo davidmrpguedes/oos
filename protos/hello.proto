@@ -1,0 +1,56 @@
+
+
+
+
+// version of protocol buffer used
+    syntax = "proto3";
+
+    // package name for the buffer will be used later
+    package hello;
+
+    // service which can be executed
+    service Say {
+    // function which can be called
+      rpc Send (KRequest) returns (KResponse);
+    }
+
+
+    // argument
+    message KRequest {
+      // data type and position of dataF
+      string reqdata = 1;
+      uint32 request_id = 2;
+      uint32 request_knode_id = 3;
+      RequestTypeEnum request_type = 4;
+      string request_data = 5;
+
+      enum RequestTypeEnum {
+        RequestPing = 0;
+        RequestFindnode = 1;
+        RequestFindvalue = 2;
+        RequestStore = 3;
+      };
+
+    }
+
+
+      // return value
+      message KResponse {
+        // data type and position of data
+        string message = 1;
+        uint32 response_id = 2;
+        uint32 request_knode_ori_id = 3;
+        ResponseTypeEnum  response_type = 4;
+        string response_data = 5;
+
+              enum ResponseTypeEnum {
+        ResponsePing = 0;
+        ResponseFindnode = 1;
+        ResponseFindvalue = 2;
+        ResponseStore = 3;
+      }
+    }
+
+
+
+
